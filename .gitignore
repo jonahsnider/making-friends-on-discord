@@ -191,3 +191,5 @@ $RECYCLE.BIN/
 
 # TypeScript compiler output
 tsc_output
+
+*.env
