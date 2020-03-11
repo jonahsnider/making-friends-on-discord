@@ -17,7 +17,7 @@
 		]
 	},
 	"bugs": {
-		"url": "https://github.com/pizzafox/typescript-starter/issues"
+		"url": "https://github.com/pizzafox/making-friends-on-discord/issues"
 	},
 	"devDependencies": {
 		"@istanbuljs/nyc-config-typescript": "^1.0.1",
@@ -49,7 +49,7 @@
 	"private": true,
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/pizzafox/typescript-starter.git"
+		"url": "git+https://github.com/pizzafox/making-friends-on-discord.git"
 	},
 	"scripts": {
 		"build": "tsc",
