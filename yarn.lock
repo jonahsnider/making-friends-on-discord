@@ -3092,10 +3092,10 @@ prism-media@^1.2.0:
   resolved "https://registry.yarnpkg.com/prism-media/-/prism-media-1.2.1.tgz#168f323712bcaacb1d70ae613bf9d9dc44cf43d4"
   integrity sha512-R3EbKwJiYlTvGwcG1DpUt+06DsxOGS5W4AMEHT7oVOjG93MjpdhGX1whHyjnqknylLMupKAsKMEXcTNRbPe6Vw==
 
-prisma2@^2.0.0-preview023:
-  version "2.0.0-preview023"
-  resolved "https://registry.yarnpkg.com/prisma2/-/prisma2-2.0.0-preview023.tgz#9c692b6fe0f3917b9ad295db6fa15018e5465ca9"
-  integrity sha512-rwK1fzVcC9S9eJJBn1qBwO3ccuN0FRii3UkQcwIGg98jyo3nx0QuLSmH0c6xtxDWhzIN1sRMepZf959AaVNxkA==
+prisma2@^2.0.0-previewnull-1:
+  version "2.0.0-previewnull-1"
+  resolved "https://registry.yarnpkg.com/prisma2/-/prisma2-2.0.0-previewnull-1.tgz#18d17d05ada12df272ce023bd491f0316b71c584"
+  integrity sha512-tileM0fP3FkNYkxUe/YFCCgkkuDXFLCCykJinMi72ss0riinJ3GCLuCq/xC3CjjpA9wwh5ep201ws2UQi4yIEA==
 
 process-nextick-args@~2.0.0:
   version "2.0.1"
