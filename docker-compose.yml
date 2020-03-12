@@ -1,0 +1,30 @@
+version: '3.7'
+networks:
+  mfod-backend:
+    driver: bridge
+    name: mfod-backend
+  mfod-frontend:
+    driver: bridge
+    name: mfod-frontend
+services:
+  postgres:
+    image: postgres:12.1-alpine
+    restart: unless-stopped
+    volumes:
+      - mfod-postgres-storage
+    networks:
+      - mfod-backend
+    env_file: postgres.env
+    ports:
+      - '5432:5432'
+  # Autoupdate images
+  watchtower:
+    image: v2tec/watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - mfod-backend
+volumes:
+  mfod-postgres-storage:
+    external: true

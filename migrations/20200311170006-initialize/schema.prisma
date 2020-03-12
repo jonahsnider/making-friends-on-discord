@@ -1,0 +1,14 @@
+datasource postgres {
+  url = "***"
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Friend {
+  friendCode String   @id
+  areFriends    Boolean?
+  parent     String?
+}

@@ -7,8 +7,18 @@
 	"bugs": {
 		"url": "https://github.com/pizzafox/making-friends-on-discord/issues"
 	},
+	"dependencies": {
+		"@prisma/client": "^2.0.0-preview023",
+		"discord.js": "^12.0.2",
+		"signale": "^1.4.0"
+	},
 	"devDependencies": {
+		"@types/signale": "^1.2.1",
+		"@types/ws": "^7.2.2",
 		"prettier": "^1.19.1",
+		"prisma2": "^2.0.0-preview023",
+		"rimraf": "^3.0.2",
+		"ts-node": "^8.6.2",
 		"typescript": "^3.8.3",
 		"xo": "^0.27.2"
 	},
@@ -26,10 +36,12 @@
 	"scripts": {
 		"build": "tsc",
 		"lint": "xo",
-		"prebuild": "rm -rf tsc_output",
-		"pretest": "rm -rf coverage .nyc_output",
+		"postinstall": "prisma2 generate",
+		"prebuild": "rimraf tsc_output",
+		"pretest": "rimraf coverage .nyc_output",
 		"style": "prettier --ignore-path .gitignore --check \"./**/*.{{j,t}{s,sx},flow,{sc,c,le}ss,json,m{d,dx},{y,ya}ml}\""
 	},
+	"type": "module",
 	"version": "1.0.0",
 	"xo": {
 		"prettier": true
