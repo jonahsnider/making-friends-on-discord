@@ -1,8 +1,8 @@
-import {Client, Message, PartialMessage, Intents, ActivityFlags} from 'discord.js';
+import {PrismaClient} from '@prisma/client';
+import {Client, Message, PartialMessage} from 'discord.js';
 import {friendCodeRegExps} from '../constants';
-import {PrismaClient, Friend} from '@prisma/client';
 import {logger} from '../logger';
-import {Controller, Events} from './Controller';
+import {Controller, Events} from './controller';
 
 export class FriendlyClient extends Client {
 	db: PrismaClient;
@@ -16,7 +16,7 @@ export class FriendlyClient extends Client {
 			messageSweepInterval: 45,
 			partials: ['MESSAGE'],
 			presence:
-			process.env.NODE_ENV === 'production' ? undefined : {activity: {name: 'for new friends', type: 'WATCHING'}},
+				process.env.NODE_ENV === 'production' ? undefined : {activity: {name: 'for new friends', type: 'WATCHING'}}
 			// Enabling these intents will only allow DMs to go through for whatever reason
 			// ws: {intents: [Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILD_MESSAGES]}
 		});
@@ -26,11 +26,11 @@ export class FriendlyClient extends Client {
 		this.friendCode = friendCode;
 	}
 
-	processMultipleMessages(...messages: Array<Message | PartialMessage>) {
-		Array.from(messages.values()).forEach(message => this.processMessage(message));
+	processMultipleMessages(...messages: Array<Message | PartialMessage>): void {
+		[...messages.values()].forEach(message => this.processMessage(message));
 	}
 
-	listen() {
+	listen(): void {
 		this.on('message', this.processMessage);
 		this.on('messageDelete', this.processMessage);
 		this.on('messageUpdate', this.processMultipleMessages);
@@ -86,13 +86,14 @@ export class FriendlyClient extends Client {
 		this.controller.emit(Events.NewFriend, newFriendCode, this.friendCode);
 	}
 
-	async init() {
+	async init(): Promise<void> {
 		this.listen();
 
 		try {
 			await this.login(this.friendCode);
 		} catch (error) {
 			logger.error(`Unable to use friend code ${this.friendCode}, marking it as non functional`);
+			logger.error(error);
 			this.controller.emit(Events.Failure, this.friendCode);
 			this.destroy();
 		}

@@ -1,12 +1,12 @@
-import {PrismaClient, Friend} from '@prisma/client';
-import {Controller, Events} from './structures/Controller';
-import {FriendlyClient} from './structures/FriendlyClient';
+import {PrismaClient} from '@prisma/client';
 import {logger} from './logger';
+import {Controller, Events} from './structures/controller';
+import {FriendlyClient} from './structures/friendly-client';
 
 const db = new PrismaClient();
 const controller = new Controller();
 
-async function start() {
+async function start(): Promise<void> {
 	await db.connect();
 
 	// Initial start
@@ -52,7 +52,10 @@ async function start() {
 	logger.info(`Starting ${friends.size.toLocaleString()} clients`);
 
 	// Start the clients
-	friends.forEach(async friend => friend.init().then(() => logger.start(`${friend.friendCode} started`)));
+	friends.forEach(async friend => {
+		await friend.init();
+		logger.start(`${friend.friendCode} started`);
+	});
 }
 
 start();
