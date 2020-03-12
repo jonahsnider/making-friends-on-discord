@@ -27,6 +27,8 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Install dependencies with Yarn
         run: yarn install
+        env:
+          POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
       - name: Compile TypeScript
         run: yarn run build
       - name: Upload compiled TypeScript
@@ -58,6 +60,8 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Install dependencies with Yarn
         run: yarn install
+        env:
+          POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
       - name: Lint
         run: yarn run lint
   style:
@@ -84,5 +88,7 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Install dependencies with Yarn
         run: yarn install
+        env:
+          POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
       - name: Check style
         run: yarn run style
