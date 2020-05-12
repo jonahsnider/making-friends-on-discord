@@ -19,7 +19,7 @@
 		"prisma2": "^2.0.0-preview023",
 		"rimraf": "^3.0.2",
 		"ts-node": "^8.6.2",
-		"typescript": "^3.8.3",
+		"typescript": "^3.9.2",
 		"xo": "^0.28.0"
 	},
 	"engines": {
